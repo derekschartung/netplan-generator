@@ -13,9 +13,9 @@ export const defaultIface = {
 function Field({ label, error, children }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>
       {children}
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
     </div>
   )
 }
@@ -23,7 +23,7 @@ function Field({ label, error, children }) {
 function Input({ className = '', ...props }) {
   return (
     <input
-      className={`border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+      className={`border border-gray-300 dark:border-gray-600 rounded px-2 py-1.5 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 ${className}`}
       {...props}
     />
   )
@@ -32,7 +32,7 @@ function Input({ className = '', ...props }) {
 function Select({ children, ...props }) {
   return (
     <select
-      className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1.5 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
       {...props}
     >
       {children}
@@ -80,11 +80,11 @@ export function InterfaceForm({ ifaces, onChange }) {
         const errs = getErrors(iface)
         const showStatic = !iface.dhcp || !iface.dhcp6
         return (
-          <div key={idx} className="border border-gray-200 rounded-lg p-4 flex flex-col gap-3 bg-white shadow-sm">
+          <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col gap-3 bg-white dark:bg-gray-800 shadow-sm">
             <div className="flex items-center justify-between">
-              <span className="font-semibold text-gray-800 text-sm">Interface {idx + 1}</span>
+              <span className="font-semibold text-gray-800 dark:text-gray-200 text-sm">Interface {idx + 1}</span>
               {ifaces.length > 1 && (
-                <button onClick={() => remove(idx)} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                <button onClick={() => remove(idx)} className="text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400">Remove</button>
               )}
             </div>
 
@@ -106,11 +106,11 @@ export function InterfaceForm({ ifaces, onChange }) {
 
             {/* DHCP toggles */}
             <div className="flex gap-4">
-              <label className="flex items-center gap-2 text-sm text-gray-700">
+              <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                 <input type="checkbox" checked={iface.dhcp} onChange={e => update(idx, 'dhcp', e.target.checked)} className="rounded" />
                 DHCPv4
               </label>
-              <label className="flex items-center gap-2 text-sm text-gray-700">
+              <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                 <input type="checkbox" checked={iface.dhcp6} onChange={e => update(idx, 'dhcp6', e.target.checked)} className="rounded" />
                 DHCPv6
               </label>
@@ -204,7 +204,7 @@ export function InterfaceForm({ ifaces, onChange }) {
 
       <button
         onClick={add}
-        className="border-2 border-dashed border-gray-300 rounded-lg py-2 text-sm text-gray-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
+        className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg py-2 text-sm text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors"
       >
         + Add Interface
       </button>
